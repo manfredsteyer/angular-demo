@@ -1,0 +1,52 @@
+
+<div class="card row">
+<h1>Flight Search</h1>
+
+<div class="control-group">
+  <label>From:</label>
+  <input [(ngModel)]="from" class="form-control">
+</div>
+<div class="control-group">
+  <label>To:</label>
+  <input [(ngModel)]="to" class="form-control">
+</div>
+
+<div class="control-group">
+  <button
+    class="btn btn-default"
+    (click)="search()"
+    [disabled]="!from || !to">
+    Search
+  </button>
+</div>
+</div>
+
+<div class="row">
+<div *ngFor="let f of flights" class="col col-lg-3 col-md-4 col-sm-6 col-xs-12">
+  <flight-card
+    [item]="f"
+    [(selected)]="basket[f.id]">
+  </flight-card>
+  <!-- (selectedChange)="basket[f.id] = $event" -->
+</div>
+</div>
+<!--
+<div class="card" *ngIf="flights.length > 0">
+<table class="table table-contensed">
+  <tr *ngFor="let f of flights" [ngClass]="{ 'active': f === selectedFlight }">
+    <td>{{f.id}}</td>
+    <td>{{f.date | date:'dd.MM.yyyy HH:mm'}}</td>
+    <td>{{f.from}}</td>
+    <td>{{f.to}}</td>
+    <td><a (click)="select(f)">Select</a></td>
+  </tr>
+</table>
+</div>
+-->
+
+<div class="row card">
+<pre>Warenkorb
+-----------------
+{{ basket | json}}
+</pre>
+</div>
